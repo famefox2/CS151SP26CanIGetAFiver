@@ -13,6 +13,13 @@ public class Computer extends Player {
         gen = rand;
         difficulty = rand.nextInt(3);
     }
+    @Override
+    public Sign makeChoice(){
+        calculateResults();
+        intToEnum(result);
+        return super.getCurSign();
+    }
+    
     public Computer(int seed){
         gen = new Random(seed);
     }
@@ -31,7 +38,6 @@ public class Computer extends Player {
     public static void main(String[] args) {
         Computer one = new Computer();
         Computer two = new Computer(10);
-
         one.calculateResults();
         two.calculateResults();
         one.print();
