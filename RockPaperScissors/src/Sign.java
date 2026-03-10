@@ -6,8 +6,8 @@ public enum Sign {
 
     private Sign(int value) {
         this.value = value;
-        //TODO Auto-generated constructor stub
     }
+    
     public int getValue(){
         return value;
     }
