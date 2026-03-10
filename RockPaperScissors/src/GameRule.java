@@ -65,6 +65,16 @@ public class GameRule {
 
     }
 
+    public int getHumanWins(){
+        return humanWins;
+    }
+    public int getComputerWins(){
+        return computerWins;
+    }
+    public int getDraws(){
+        return draws;
+    }
+
     public void printResult(){
         System.out.println("Score: Human:" + humanWins + " Computer:"+ computerWins+ " Draws:"+ draws);
     }
