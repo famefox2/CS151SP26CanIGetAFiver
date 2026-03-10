@@ -4,6 +4,10 @@ public abstract class Player {
     private int wins;
     private Sign curSign;
 
+    /**
+     * Convert int sign to the enum represetation of rock paper, scissors
+     * @param intSign sign choice in terms of int
+     */
     public void intToEnum(int intSign){
         if(intSign == Sign.ROCK.getValue()){
             curSign = Sign.ROCK;
@@ -15,7 +19,7 @@ public abstract class Player {
             curSign = Sign.SCISSORS;
         }
     }
-
+    
     public Sign makeChoice(){
         return curSign;
         
