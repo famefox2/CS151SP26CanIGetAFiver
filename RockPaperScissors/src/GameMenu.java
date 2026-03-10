@@ -4,7 +4,9 @@ public class GameMenu {
 
     final static int GAME_RPS = 1;
     final static int EXIT = 0;
-
+    /**
+     * Allow player to choose a game to play
+     */
     public void startMenu(){
         Scanner scnr = new Scanner(System.in);
         int input;
