@@ -45,7 +45,13 @@ public class UnitTest {
     }
 
     public static void main(String[] args) {
-        
+        System.out.println("Running tests: ...");
+
+        testSignValues();
+        testComputerChoiceNotNull();
+        testComputerChoiceInRange();
+        testPlayerName();
+        testWinTracking();
 
         //Test the whole code
         GameMenu test = new GameMenu();
