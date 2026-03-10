@@ -16,8 +16,36 @@ public class UnitTest {
         System.out.println("PASSED: testComputerChoiceNotNull");
     }
 
-    public static void main(String[] args) {
+    static void testComputerChoiceInRange(){
+        Computer comp = new Computer (7);
+        for(int i = 0; i<50;i++){
+            Sign choice = comp.makeChoice();
+            int val = choice.getValue();
+            assert val>=0 && val<=2: "Computer choice value should be 0, 1, or 2 but got " + val;
+        }
+        System.out.println("PASSED: testComputerChoiceInRange (50 rounds)");
+    }
 
+    // Player class tests
+    static void testPlayerName(){
+        Computer comp= new Computer();
+        assert "Computer".equals(comp.getPlayerName()): "Computer player name should be 'Computer'";
+        System.out.println("PASSED: testPlayerName");
+    }
+
+    static void testWinTracking(){
+        Computer comp = new Computer();
+        assert comp.getWins()==0: "Initial wins should be 0";
+        comp.addWin();
+        assert comp.getWins()==1: "Wins should be 1 after addWin()";
+        comp.addWin();
+        comp.addWin();
+        assert comp.getWins()==3: "Wins should be 3 after three addWin()'s";
+        System.out.println("PASSED: testPlayerWinTracking");
+    }
+
+    public static void main(String[] args) {
+        
 
         //Test the whole code
         GameMenu test = new GameMenu();
