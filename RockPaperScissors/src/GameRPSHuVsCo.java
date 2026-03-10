@@ -23,6 +23,17 @@ public class GameRPSHuVsCo extends Game{
             rules.getRPS();
             
             count+=1;
-                }                
+                } 
+        
+        System.out.println("\n---GAME OVER---");
+        rules.printResult();
+        if(rules.getHumanWins()>rules.getComputerWins()){
+            System.out.println( human.getPlayerName() + " wins the game!");
+        }else if(rules.getComputerWins()>rules.getHumanWins()){
+            System.out.println("Computer wins the game!");
+        }else{
+            System.out.println("It's a draw!");
+        }
+        System.out.println("---------------\n");
     }
 }
