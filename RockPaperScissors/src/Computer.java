@@ -3,16 +3,29 @@ import java.util.Random;
 public class Computer extends Player {
 
 
-    String name = "Computer";
-    int difficulty;
-    int result;
-    Random gen;
+    
+    private int result;
+    private Random gen;
 
+    /**
+     * Create a random generator for Computer
+     */
     public Computer(){
         Random rand = new Random();
         gen = rand;
-        difficulty = rand.nextInt(3);
+        super.setPlayerName("Computer");
     }
+    /**
+     * Set a specific seed for the random generator for computer
+     * @param seed a specific seed number 
+     */
+    public Computer(int seed){
+        gen = new Random(seed);
+    }
+    /**
+     * Computer make a choice for rock, paper ,or scissors. Return its chosen sign
+     * @return computer's sign choice 
+     */
     @Override
     public Sign makeChoice(){
         calculateResults();
@@ -20,10 +33,10 @@ public class Computer extends Player {
         return super.getCurSign();
     }
     
-    public Computer(int seed){
-        gen = new Random(seed);
-    }
-
+    
+    /**
+     * Generate a number from 0 to 2
+     */
     public void calculateResults(){
         result = gen.nextInt(3);
     }
