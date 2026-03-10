@@ -16,17 +16,22 @@ public class HumanInput {
             try {
                 System.out.println("Enter A Number: 0.Rock, 1.Paper, or 2.Scissors");
                     
-                    throwSign = scnr.nextInt(2);
+                    throwSign = scnr.nextInt();
+
+                    if (0<=throwSign && throwSign<=2) {
+                        valid = true;
+                    }else {
+                        System.out.println(throwSign + " is not a valid input");
+                        System.out.println("Enter correct amount again");
+                    }
 
                     } catch (Exception e) {
                         valid = false;
                         System.out.println(throwSign+"is not a valid input");
                         System.out.println("Enter correct amount again");
-                        throwSign = scnr.nextInt();
+                        scnr.nextLine();
                     }
-                    if (0>=throwSign && throwSign<=2) {
-                        valid = true;
-                    }
+                    
         }
         return throwSign;
     }
