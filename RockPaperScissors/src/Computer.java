@@ -20,6 +20,7 @@ public class Computer extends Player {
      * @param seed a specific seed number 
      */
     public Computer(int seed){
+        super.setPlayerName("Computer");
         gen = new Random(seed);
     }
     /**
