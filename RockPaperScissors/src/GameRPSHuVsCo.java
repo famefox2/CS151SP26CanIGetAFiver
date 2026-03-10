@@ -1,3 +1,4 @@
+import java.util.Scanner;
 /**
  * Rock, paper, scissors for a human vs a computer
  */
@@ -6,6 +7,11 @@ public class GameRPSHuVsCo extends Game{
     private Player human;
     private Player computer;
     private final static int ROUNDS = 20;
+    private Scanner scnr;
+
+    public GameRPSHuVsCo(Scanner scnr){
+        this.scnr=scnr;
+    }
     
     /**
      * Make the RPS game for 20 rounds. Creates the human and computer players, the game rules for the game
@@ -13,7 +19,7 @@ public class GameRPSHuVsCo extends Game{
     @Override
     public void runGame(){
         int count = 1;
-        human = new HumanPlayer();
+        human = new HumanPlayer(scnr);
         computer = new Computer();
         GameRule rules = new GameRule(human, computer);
         

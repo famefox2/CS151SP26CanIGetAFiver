@@ -23,7 +23,7 @@ public class GameMenu {
                 runGame = false;
                }
                else if (input == GAME_RPS){
-                startGame = new GameRPSHuVsCo();
+                startGame = new GameRPSHuVsCo(scnr);
                 startGame.runGame();
                }
             
@@ -34,6 +34,11 @@ public class GameMenu {
         }
         scnr.close();
         System.out.println("Thank you for playing");
+    }
+    
+    public static void main(String[] args){
+        GameMenu menu = new GameMenu();
+        menu.startMenu();
     }
     
 }

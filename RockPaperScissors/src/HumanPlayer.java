@@ -1,10 +1,12 @@
+import java.util.Scanner;
+
 public class HumanPlayer extends Player {
     
     private final HumanInput humanInput;
 
-    public HumanPlayer(){
+    public HumanPlayer(Scanner scnr){
         super.setPlayerName("Human");
-        humanInput = new HumanInput();
+        humanInput = new HumanInput(scnr);
     }
     /**
      * Gets human player choice from command line and save it

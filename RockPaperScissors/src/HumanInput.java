@@ -2,6 +2,12 @@ import java.util.Scanner;
 
 public class HumanInput {
 
+    private Scanner scnr;
+
+    public HumanInput(Scanner scnr){
+        this.scnr=scnr;
+    }
+
     /**
      * Gets the human player's choice for rock, paper, or scissors in a command line from 0 to 2
      * @return the int represetnation the players choice.
