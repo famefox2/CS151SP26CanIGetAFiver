@@ -12,7 +12,7 @@ public class HumanInput {
      * Gets the human player's choice for rock, paper, or scissors in a command line from 0 to 2
      * @return the int represetnation the players choice.
      */
-    public int inputThrow(){
+    public int inputThrow(boolean test){
         int throwSign;
         throwSign =-1;
         
@@ -42,5 +42,6 @@ public class HumanInput {
     }
 
 }
+
 
 
