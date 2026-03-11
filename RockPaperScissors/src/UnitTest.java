@@ -1,3 +1,6 @@
+import java.io.StringReader; 
+import java.util.Scanner; 
+
 public class UnitTest {
 
     // Sign enum tests
@@ -44,6 +47,19 @@ public class UnitTest {
         System.out.println("PASSED: testPlayerWinTracking");
     }
 
+    //tests whether human input class works properly
+    static void testHumanInput() {
+        StringReader fakeInput = new StringReader("1"); 
+        Scanner scnr = new Scanner(fakeInput); 
+        HumanInput human = new HumanInput(scnr); 
+         int result = human.inputThrow(); 
+
+        assert result == 1 : "Human input should have been 1 if they player entered in 1"; 
+
+        System.out.println("PASSED: testHumanInput"); 
+         
+    }
+
     public static void main(String[] args) {
         System.out.println("Running tests: ...");
 
@@ -59,4 +75,5 @@ public class UnitTest {
 
     }
 }
+
 
