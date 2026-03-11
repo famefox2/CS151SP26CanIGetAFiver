@@ -68,12 +68,13 @@ public class UnitTest {
         testComputerChoiceInRange();
         testPlayerName();
         testWinTracking();
-
+        testHumanInput();
         //Test the whole code
         GameMenu test = new GameMenu();
         test.startMenu();
 
     }
 }
+
 
 
