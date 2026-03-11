@@ -1,3 +1,5 @@
+
+//enum that represents the three possible choices: rock, paper, and scissors.
 public enum Sign { 
     ROCK(0), 
     PAPER(1),
