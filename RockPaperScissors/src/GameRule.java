@@ -16,6 +16,7 @@ public class GameRule {
     }
 
     //rock == 0 paper = 1 scissor=2
+    // handles wins for a single round of the game and prints out message for who won
     public void getRPS(){
         Sign humanChose = human.makeChoice();
         Sign computerChose = computer.makeChoice();
@@ -81,5 +82,6 @@ public class GameRule {
     }
 
 }
+
 
 
