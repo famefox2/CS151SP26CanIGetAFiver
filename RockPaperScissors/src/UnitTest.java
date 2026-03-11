@@ -47,7 +47,7 @@ public class UnitTest {
         System.out.println("PASSED: testPlayerWinTracking");
     }
 
-    //tests whether human input class works properly
+ 
     static void testHumanInput() {
         StringReader fakeInput = new StringReader("1"); 
         Scanner scnr = new Scanner(fakeInput); 
@@ -75,6 +75,7 @@ public class UnitTest {
 
     }
 }
+
 
 
 
