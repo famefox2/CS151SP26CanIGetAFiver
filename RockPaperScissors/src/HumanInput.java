@@ -15,7 +15,6 @@ public class HumanInput {
     public int inputThrow(){
         int throwSign;
         throwSign =-1;
-        throwSign = scnr.nextInt();
         
         boolean valid=false;
         while(!valid){
@@ -43,4 +42,5 @@ public class HumanInput {
     }
 
 }
+
 
