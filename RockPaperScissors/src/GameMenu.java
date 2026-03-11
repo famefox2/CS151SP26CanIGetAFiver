@@ -5,6 +5,7 @@ public class GameMenu {
     final static int GAME_RPS = 1;
     final static int EXIT = 0;
     /**
+     * Opens the main menu for the game
      * Allow player to choose a game to play
      */
     public void startMenu(){
@@ -42,3 +43,4 @@ public class GameMenu {
     }
     
 }
+
