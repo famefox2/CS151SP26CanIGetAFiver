@@ -19,7 +19,9 @@ public class HumanInput {
         boolean valid=false;
         while(!valid){
             try {
+                if(test == false) {
                 System.out.println("Enter A Number: 0.Rock, 1.Paper, or 2.Scissors");
+                }
                     
                     throwSign = scnr.nextInt();
 
@@ -42,6 +44,7 @@ public class HumanInput {
     }
 
 }
+
 
 
 
