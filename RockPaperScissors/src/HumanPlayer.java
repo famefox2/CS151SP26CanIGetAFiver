@@ -14,7 +14,7 @@ public class HumanPlayer extends Player {
     @Override
     public void getintRPS(){
         int input;
-        input = humanInput.inputThrow();
+        input = humanInput.inputThrow(false);
         intToEnum(input);
     }
     /**
@@ -41,3 +41,4 @@ public class HumanPlayer extends Player {
 
     
 }
+
