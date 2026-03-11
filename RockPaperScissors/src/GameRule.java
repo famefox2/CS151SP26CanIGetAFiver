@@ -45,6 +45,7 @@ public class GameRule {
             humanWins+=1;
         }
         else{
+            //handles draws
             switch (humanChose) {
                 case Sign.ROCK -> {
                     System.out.println("You chose Rock. The computer chose Rock. Draw!");
@@ -80,3 +81,4 @@ public class GameRule {
     }
 
 }
+
