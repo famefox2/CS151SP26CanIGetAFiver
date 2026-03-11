@@ -52,7 +52,7 @@ public class UnitTest {
         StringReader fakeInput = new StringReader("1"); 
         Scanner scnr = new Scanner(fakeInput); 
         HumanInput human = new HumanInput(scnr); 
-         int result = human.inputThrow(); 
+         int result = human.inputThrow(true); 
 
         assert result == 1 : "Human input should have been 1 if they player entered in 1"; 
 
@@ -75,6 +75,7 @@ public class UnitTest {
 
     }
 }
+
 
 
 
