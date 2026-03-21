@@ -16,3 +16,9 @@ NOT IMPLEMENTED- factory for computer algo choice, random and ComputerML
 NEED TO UPDATE-Game menu for choice to play against  the random comp or the ML computer
 Need to ADD; a runGame() to implement RoundSequence so fix GameRPSHUVsCo, Gamerule
 To be DELETED- STATIC PLAYER CLASS ONLY FOR TESTING PURPOSES
+
+FOR REPORT:
+the computer ml algo use a hashmap to save the sequence using class Sequencehashmap since pattern should have no duplicate, sequence is the key and value is the number of occurence of the pattern in the game. 
+in computerML class it has another hashmap, this hashmap is for the predictions since a pattern for N=5 key is RPSR and possible sequence is RPSRP, RPSRR,RPSRS.
+key is N-1 size sequence and value of hashmap is a SequenceHashMap class with three possible sequences. This is to make search easier has you can use hashmap.contains and no need to
+do substring and iterate the whole list for comparisons to find the possible sequence and then get the most frequenct pattern.
