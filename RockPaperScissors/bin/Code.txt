@@ -1,2 +1,0 @@
-Code that may change, computer, change how the computer may behave. Game menu, if we were to add more game to
-to play, we need to make sure we can add game.
