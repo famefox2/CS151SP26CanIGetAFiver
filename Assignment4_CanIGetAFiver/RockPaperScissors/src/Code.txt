@@ -1,0 +1,18 @@
+
+Info for added code
+Sequencehashmap class saves the n size sequence and frequency
+    Note. It save only 3 sequence per hashmap. Ex RRPPS(4) RRPPR(6) RRPPP(0),< key(value)
+    the first N-1 sign are the same < one hash map
+
+Ex
+HashMap(key, value)
+key = RRPP,  value is the hashmap={RRPPS(4), RRPPR(6), RRPPP(0)}
+key = RPSR, value ={RPSRP(5), RPSRS(23),RPSRR(12)}
+
+RoundSequence class save the sign inital of each round
+
+ComputerML class have the algo for game
+NOT IMPLEMENTED- factory for computer algo choice, random and ComputerML
+NEED TO UPDATE-Game menu for choice to play against  the random comp or the ML computer
+Need to ADD; a runGame() to implement RoundSequence so fix GameRPSHUVsCo, Gamerule
+To be DELETED- STATIC PLAYER CLASS ONLY FOR TESTING PURPOSES
