@@ -1,8 +1,8 @@
 public class StaticPlayer extends Player{
 
-    Sign bound;
-    String pattern;
-    int theSign;
+    private Sign bound;
+    private String pattern;
+    private int theSign;
     public StaticPlayer(Sign bound){
         this.bound = bound;
         theSign = bound.getValue();

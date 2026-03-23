@@ -1,6 +1,6 @@
 public abstract class Player {
 
-    protected String playerName;
+    private String playerName;
     private int wins;
     private Sign curSign;
 

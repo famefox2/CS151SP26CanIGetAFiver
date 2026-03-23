@@ -5,8 +5,8 @@ public class RoundSequence {
     //private String currSequence = "";
     private String humanSeq;
     private String comSeq;
-    Player comPlayer;
-    Player humPlayer;
+    private Player comPlayer;
+    private Player humPlayer;
 
     public RoundSequence() {
         sequence = "";
@@ -73,14 +73,17 @@ public class RoundSequence {
                 hInitial = "R";
                 sequence = sequence.concat(hInitial);
                 humanSeq = humanSeq.concat(hInitial);
+                break;
             case PAPER:
                 hInitial = "P";
                 sequence = sequence.concat(hInitial);
                 humanSeq = humanSeq.concat(hInitial);
+                break;
             case SCISSORS:
                 hInitial = "S";
                 sequence = sequence.concat(hInitial);
                 humanSeq = humanSeq.concat(hInitial);
+                break;
             default:
                 break;
         }
@@ -90,14 +93,17 @@ public class RoundSequence {
                 cInitial = "R";
                 sequence = sequence.concat(cInitial);
                 comSeq = comSeq.concat(cInitial);
+                break;
             case PAPER:
                 cInitial = "P";
                 sequence = sequence.concat(cInitial);
                 comSeq = comSeq.concat(cInitial);
+                break;
             case SCISSORS:
                 cInitial = "S";
                 sequence = sequence.concat(cInitial);
                 comSeq = comSeq.concat(cInitial);
+                break;
             default:
                 break;
         }
@@ -113,7 +119,7 @@ public class RoundSequence {
     }
 
     public String getNSizeSequence(int N){
-        return sequence.substring(sequence.length()-N-1, sequence.length()-1);
+        return sequence.substring(sequence.length()-N);
     }
 
     public void print(){

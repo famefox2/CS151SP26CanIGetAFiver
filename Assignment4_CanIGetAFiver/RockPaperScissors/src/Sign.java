@@ -70,13 +70,13 @@ public enum Sign {
     public Sign loses(Sign theSign){
         if(null != theSign)switch (theSign) {
             case ROCK -> {
-                return SCISSORS;
+                return PAPER;
             }
             case PAPER -> {
-                return ROCK;
+                return SCISSORS;
             }
             case SCISSORS -> {
-                return PAPER;
+                return ROCK;
             }
             default -> {
             }

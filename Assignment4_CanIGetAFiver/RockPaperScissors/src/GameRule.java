@@ -7,8 +7,8 @@ public class GameRule {
     private int humanWins =0;
     private int computerWins=0;
     private int draws=0;
-    Player human;
-    Player computer;
+    private Player human;
+    private Player computer;
 
     public GameRule(Player human, Player computer){
         this.human = human;

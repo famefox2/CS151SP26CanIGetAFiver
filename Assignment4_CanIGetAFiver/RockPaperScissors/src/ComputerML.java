@@ -1,5 +1,8 @@
 
+import java.io.File;
+import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Scanner;
 import java.util.Set;
 
 public class ComputerML extends Computer{
@@ -14,14 +17,19 @@ public class ComputerML extends Computer{
     private String key; //Last round Choices N-1 length
     private String currentSequence; //last round choices N length
 
+    private static final String DATA_FILE="ml_data.txt";
+
     public ComputerML(){
         super();
         N=5; //Default N size
+        storedSequence = new HashMap<>();
     }
 
     public ComputerML(int seed){
         super(seed);
         N=5; //Default N size
+        storedSequence = new HashMap<>();
+        loadData();
     }
 
     public ComputerML(RoundSequence seq, int N){
@@ -29,12 +37,14 @@ public class ComputerML extends Computer{
         temp = seq;
         this.N = N;
         storedSequence = new HashMap<>();
+        loadData();
     }
     public ComputerML(int seed, RoundSequence seq, int N){
         super(seed);
         temp = seq;
         this.N = N;
         storedSequence = new HashMap<>();
+        loadData();
     }
 
 
@@ -50,6 +60,15 @@ public class ComputerML extends Computer{
         }
     }
 
+    @Override
+    public Sign chooseSign(){
+        return makeChoice();
+    }
+
+    @Override
+    public String getAlgorithmName(){
+        return "Machine Learning";
+    }
 
 
     /**
@@ -105,39 +124,12 @@ public class ComputerML extends Computer{
     public void setKey(){
         String currSequence;
         currSequence = temp.getRoundSequence();
-        key = currSequence.substring(startIndex(), lastIndex());
-    }
-    /**
-     * Find the start of the sequence
-     * @return
-     */
-    public int startIndex(){
-        String currSequence;
-        currSequence = temp.getRoundSequence();
-        int startIndex;
-        if(currSequence.isEmpty()){
-             startIndex=0;
+        int start=currSequence.length()-N;
+        int end = currSequence.length()-1;
+        if(start<0){
+            start=0;
         }
-        else{
-            startIndex = currSequence.length()-N-1;
-        }
-        return startIndex;
-    }
-    /**
-     * end of the sequence
-     * @return
-     */
-    public int lastIndex(){
-        String currSequence;
-        currSequence = temp.getRoundSequence();
-        int lastIndex;
-        if(currSequence.isEmpty()||currSequence.length()<N){
-            return currSequence.length();
-        }
-        else{
-            lastIndex = currSequence.length()-2;
-            return lastIndex;
-        }
+        key = currSequence.substring(start,end);
     }
    
     /**
@@ -177,11 +169,9 @@ public class ComputerML extends Computer{
     }
 
     /**
-     * UNFINSHED, makes a another hashmap with a different size N, currently just takes the existing saved
-     * round results and make a new hashmap. Does not add new individuals rounds to map nor predict the next
-     * round
-     * @param n
-     * @return
+     * Makes a another hashmap with a different size N
+     * @param n new sequence size
+     * @return new hashmap of sequences
      */
     public HashMap<String, SequenceHashMap> storeSequenceWithDifferentN(int n){
         HashMap<String, SequenceHashMap> newMap = new HashMap<>();
@@ -193,10 +183,94 @@ public class ComputerML extends Computer{
         }
         return newMap;
     }
-    //Testing delete later
-    public void printKeyS(){
-        System.out.println("Key "+ key+ " Seq "+currentSequence);
+
+    public void setRoundSequence(RoundSequence seq){
+        this.temp=seq;
     }
+
+    public RoundSequence getRoundSequence(){
+        return temp;
+    }
+
+    /**
+     * Saves stored frequency data to a file so it persists between games
+     */
+    public void saveData() {
+        try {
+            PrintWriter writer =new PrintWriter(DATA_FILE);
+            Set<String> keys=storedSequence.keySet();
+            for(String k : keys){
+                SequenceHashMap freqMap = storedSequence.get(k);
+                HashMap<String, Integer> innerMap= freqMap.getaSeqHashMap();
+                Set<String> seqKeys =innerMap.keySet();
+                StringBuilder line=new StringBuilder();
+                line.append(k).append(":");
+                boolean first=true;
+                for (String seqKey : seqKeys){
+                    if(!first){
+                        line.append(",");
+                    }
+                    line.append(seqKey).append("=").append(innerMap.get(seqKey));
+                    first =false;
+                }
+                writer.println(line.toString());
+            }
+            writer.close();
+        } catch (Exception e) {
+            System.out.println("Could not save ML data: "+e.getMessage());
+        }
+    }
+
+    public void loadData() {
+        try {
+            File file =new File(DATA_FILE);
+            if (!file.exists()){
+                return;
+            }
+            Scanner fileScanner=new Scanner(file);
+            while (fileScanner.hasNextLine()){
+                String line = fileScanner.nextLine().trim();
+                if (line.isEmpty()){
+                    continue;
+                }
+                // Format: KEY:SEQ1=FREQ1,SEQ2=FREQ2,...
+                int colonIndex = line.indexOf(":");
+                if (colonIndex < 0){
+                    continue;
+                }
+                String fileKey=line.substring(0, colonIndex);
+                String pairs=line.substring(colonIndex + 1);
+                String[] entries = pairs.split(",");
+                SequenceHashMap freqMap =null;
+                for (String entry:entries) {
+                    String[] parts=entry.split("=");
+                    if (parts.length==2){
+                        String seqKey=parts[0];
+                        int freq = Integer.parseInt(parts[1]);
+                        if (freqMap== null){
+                            freqMap =new SequenceHashMap(seqKey);
+                            for (int i= 1;i<freq;i++) {
+                                freqMap.addFreq(seqKey);
+                            }
+                        }else{
+                            freqMap.addHashMapSequence(seqKey);
+                            for (int i= 1;i<freq;i++){
+                                freqMap.addFreq(seqKey);
+                            }
+                        }
+                    }
+                }
+                if (freqMap != null){
+                    storedSequence.put(fileKey,freqMap);
+                }
+            }
+            fileScanner.close();
+        } catch (Exception e){
+            System.out.println("Could not load ML data: "+ e.getMessage());
+        }
+    }
+
+    
     /**
      * Checker
      */

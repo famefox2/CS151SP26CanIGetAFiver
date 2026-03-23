@@ -1,9 +1,7 @@
 import java.util.Random;
 
-public class Computer extends Player {
+public class Computer extends Player implements ComputerChoiceAlgorithm{
 
-
-    
     private int result;
     private Random gen;
 
@@ -38,6 +36,15 @@ public class Computer extends Player {
         return super.getCurSign();
     }
     
+    @Override
+    public Sign chooseSign(){
+        return makeChoice();
+    }
+
+    @Override
+    public String getAlgorithmName(){
+        return "Random";
+    }
     
     /**
      * Generate a number from 0 to 2

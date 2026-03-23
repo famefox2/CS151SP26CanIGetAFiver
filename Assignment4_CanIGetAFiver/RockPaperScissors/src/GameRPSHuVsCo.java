@@ -8,9 +8,11 @@ public class GameRPSHuVsCo extends Game{
     private Player computer;
     private final static int ROUNDS = 20;
     private Scanner scnr;
+    private boolean useML;
 
-    public GameRPSHuVsCo(Scanner scnr){
+    public GameRPSHuVsCo(Scanner scnr, boolean useML){
         this.scnr=scnr;
+        this.useML=useML;
     }
     
     /**
@@ -20,13 +22,31 @@ public class GameRPSHuVsCo extends Game{
     public void runGame(){
         int count = 1;
         human = new HumanPlayer(scnr);
-        computer = new Computer();
+        RoundSequence roundSeq=null;
+        
+        if(useML){
+            roundSeq =new RoundSequence();
+            ComputerML mlComp=new ComputerML();
+            mlComp.setRoundSequence(roundSeq);
+            computer=mlComp;
+            roundSeq.updatePlayers(human, computer);
+            System.out.println("Playing against Machine Learning Computer");
+        } else {
+            computer = new Computer();
+            System.out.println("Playing against Random Computer");
+        }
+        System.out.println("----------------------------");
+
         GameRule rules = new GameRule(human, computer);
         
         while(count<=ROUNDS){
             System.out.println("Round " + count);
             
             rules.getRPS();
+
+            if(useML && roundSeq!=null){
+                roundSeq.updateRoundSequence();
+            }
             
             count+=1;
                 } 
@@ -41,5 +61,12 @@ public class GameRPSHuVsCo extends Game{
             System.out.println("It's a draw!");
         }
         System.out.println("---------------\n");
+
+        // Saves ML data at end of game
+        if(useML && computer instanceof ComputerML){
+            ComputerML mlComp =(ComputerML)computer;
+            mlComp.saveData();
+            System.out.println("ML data saved for next game.");
+        }
     }
 }
